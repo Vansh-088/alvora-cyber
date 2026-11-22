@@ -1,6 +1,6 @@
 # Alvora Cyber
 
-> AI-powered cybersecurity layer for macOS — real-time threat detection, encrypted file vault, and a browser extension that guards every AI prompt you send.
+> AI security platform for macOS — protects your machine and your AI usage in real time. Monitors network connections, guards every prompt you send to AI tools, and keeps sensitive files encrypted on disk.
 
 ![Alvora Cyber Dashboard](electron/assets/icon.iconset/icon_512x512.png)
 
