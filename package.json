@@ -11,9 +11,9 @@
   "type": "module",
   "main": "electron/main.cjs",
   "scripts": {
-    "dev": "concurrently --names \"BACKEND,VITE\" --prefix-colors \"cyan,blue\" \"/Users/vanshdudhagra/.nvm/versions/node/v24.14.0/bin/node backend/server.js\" \"vite --port 5173\"",
-    "dev:web": "concurrently --names \"BACKEND,VITE\" --prefix-colors \"cyan,blue\" \"/Users/vanshdudhagra/.nvm/versions/node/v24.14.0/bin/node backend/server.js\" \"vite --port 5173\"",
-    "dev:electron": "concurrently --names \"BACKEND,VITE,ELECTRON\" --prefix-colors \"cyan,blue,green\" \"/Users/vanshdudhagra/.nvm/versions/node/v24.14.0/bin/node backend/server.js\" \"vite --port 5173\" \"wait-on http://localhost:5173 && NODE_ENV=development electron .\"",
+    "dev": "concurrently --names \"BACKEND,VITE\" --prefix-colors \"cyan,blue\" \"node backend/server.js\" \"vite --port 5173\"",
+    "dev:web": "concurrently --names \"BACKEND,VITE\" --prefix-colors \"cyan,blue\" \"node backend/server.js\" \"vite --port 5173\"",
+    "dev:electron": "concurrently --names \"BACKEND,VITE,ELECTRON\" --prefix-colors \"cyan,blue,green\" \"node backend/server.js\" \"vite --port 5173\" \"wait-on http://localhost:5173 && NODE_ENV=development electron .\"",
     "build": "vite build",
     "benchmark": "node benchmark/eval.js",
     "test": "node benchmark/eval.js",
