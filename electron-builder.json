@@ -1,0 +1,99 @@
+{
+  "appId": "com.alvoracyber.desktop",
+  "productName": "Alvora Cyber",
+  "copyright": "Copyright \u00a9 2025 Vansh Dudhagra",
+  "npmRebuild": false,
+  "asar": true,
+  "afterSign": "scripts/notarize.cjs",
+  "directories": {
+    "buildResources": "electron/assets",
+    "output": "release"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*",
+    "!node_modules/.cache/**/*"
+  ],
+  "extraResources": [
+    {
+      "from": "backend-build",
+      "to": "backend"
+    }
+  ],
+  "protocols": [
+    {
+      "name": "Alvora Cyber",
+      "schemes": ["alvora"]
+    }
+  ],
+  "mac": {
+    "category": "public.app-category.utilities",
+    "target": [
+      "dmg",
+      "zip"
+    ],
+    "icon": "electron/assets/icon.icns",
+    "darkModeSupport": true,
+    "hardenedRuntime": true,
+    "gatekeeperAssess": false,
+    "identity": "CE288AC4385989222C6A7B7794A18FB4D134D2FE",
+    "entitlements": "electron/entitlements.mac.plist",
+    "entitlementsInherit": "electron/entitlements.mac.inherit.plist",
+    "extendInfo": {
+      "NSDownloadsFolderUsageDescription": "Alvora Cyber checks new downloads for malware, phishing origins and disguised files. Files are scanned on this Mac and never uploaded."
+    }
+  },
+  "dmg": {
+    "title": "Alvora Cyber",
+    "backgroundColor": "#0a0f1a",
+    "contents": [
+      {
+        "x": 130,
+        "y": 220
+      },
+      {
+        "x": 410,
+        "y": 220,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ]
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": [
+          "x64"
+        ]
+      },
+      {
+        "target": "portable",
+        "arch": [
+          "x64"
+        ]
+      }
+    ],
+    "icon": "electron/assets/icon.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Alvora Cyber"
+  },
+  "linux": {
+    "target": [
+      "AppImage",
+      "deb"
+    ],
+    "icon": "electron/assets/icon.png",
+    "category": "Security"
+  },
+  "publish": {
+    "provider": "github",
+    "owner": "alvoracyber",
+    "repo": "desktop"
+  }
+}

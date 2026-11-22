@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #0a0f1a;
+  color: #94a3b8;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,229,255,0.4); }
+
+/* ── Glass panels ─────────────────────────────────────────────────────────── */
+
+.glass-panel {
+  /* Near-opaque instead of backdrop-filter: blurring the animated particle
+     canvas forced the GPU to re-blur every panel on every frame. */
+  background: rgba(17, 24, 39, 0.94);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ── CRT Scanlines ────────────────────────────────────────────────────────── */
+
+.scanlines {
+  position: relative;
+  isolation: isolate;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* ── Glow pulse (critical threat level indicator) ─────────────────────────── */
+
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 8px rgba(239,68,68,0.6), 0 0 24px rgba(239,68,68,0.3); }
+  50%       { text-shadow: 0 0 20px rgba(239,68,68,0.9), 0 0 60px rgba(239,68,68,0.5); }
+}
+
+.glow-pulse { animation: textGlow 1.4s ease-in-out infinite; }
+
+/* ── Risk bar ─────────────────────────────────────────────────────────────── */
+
+@keyframes riskFill {
+  from { width: 0%; }
+}
+.risk-bar { animation: riskFill 0.6s ease-out forwards; }
+
+/* ── Fade in for panels ───────────────────────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.4s ease-out forwards; }
+
+/* ── License key input ────────────────────────────────────────────────────── */
+
+.license-input {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── Action badge colors ──────────────────────────────────────────────────── */
+
+.badge-block  { background: rgba(239,68,68,0.15);  color: #f87171;  border: 1px solid rgba(239,68,68,0.3);  }
+.badge-review { background: rgba(251,191,36,0.15); color: #fbbf24;  border: 1px solid rgba(251,191,36,0.3); }
+.badge-flag   { background: rgba(249,115,22,0.15); color: #fb923c;  border: 1px solid rgba(249,115,22,0.3); }
+.badge-allow  { background: rgba(52,211,153,0.15); color: #34d399;  border: 1px solid rgba(52,211,153,0.3); }
+
+/* ── Severity colors ──────────────────────────────────────────────────────── */
+
+.sev-critical { color: #f87171; }
+.sev-high     { color: #fb923c; }
+.sev-medium   { color: #fbbf24; }
+.sev-low      { color: #34d399; }
+
+/* ── Electron titlebar drag region ───────────────────────────────────────── */
+
+.drag-region { -webkit-app-region: drag; }
+.no-drag     { -webkit-app-region: no-drag; }

@@ -1,0 +1,13 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "alvora-v2",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": [
+        "/Users/vanshdudhagra/Alvora cyber extension and app/.claude/start-dev.sh"
+      ],
+      "port": 5175
+    }
+  ]
+}

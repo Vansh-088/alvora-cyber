@@ -1,0 +1,15 @@
+**/node_modules/
+dist/
+dist-electron/
+release/
+.env
+.env.local
+.env.*.local
+*.log
+benchmark/.cache/
+models/
+backend-build/
+website/dist/
+.DS_Store
+**/.DS_Store
+.tmp.driveupload/

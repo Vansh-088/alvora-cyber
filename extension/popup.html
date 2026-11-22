@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alvora Cyber</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 320px;
+      background: #0a0f1a;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 13px;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 16px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: rgba(0,229,255,0.1);
+      border: 1px solid rgba(0,229,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .logo svg { display: block; }
+    .header-text h1 {
+      font-size: 13px; font-weight: 700; color: #fff;
+      letter-spacing: .02em;
+    }
+    .header-text p {
+      font-size: 10px; color: #64748b; margin-top: 1px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      margin-left: auto; flex-shrink: 0;
+    }
+    .status-dot.online  { background: #10b981; box-shadow: 0 0 6px #10b981; animation: pulse 2s infinite; }
+    .status-dot.offline { background: #6b7280; }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50%      { opacity: .4; }
+    }
+
+    /* Stats grid */
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .stat-card .value {
+      font-size: 22px; font-weight: 700; line-height: 1;
+      font-family: 'SF Mono', monospace;
+    }
+    .stat-card .label {
+      font-size: 10px; text-transform: uppercase; letter-spacing: .06em;
+      color: #64748b; margin-top: 4px;
+    }
+    .stat-card.scanned  .value { color: #00e5ff; }
+    .stat-card.blocked  .value { color: #ef4444; }
+    .stat-card.pii      .value { color: #f59e0b; }
+    .stat-card.inject   .value { color: #8b5cf6; }
+    .stat-card.redacted .value { color: #10b981; }
+    .stat-card.links    .value { color: #f97316; }
+
+    /* Backend status */
+    .backend-status {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: 11px;
+    }
+    .backend-status .label { color: #64748b; }
+    .backend-status .val   { margin-left: auto; font-family: monospace; }
+    .backend-status .val.ok    { color: #10b981; }
+    .backend-status .val.error { color: #ef4444; }
+
+    /* Sites */
+    .sites {
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .sites-title {
+      font-size: 10px; text-transform: uppercase; letter-spacing: .06em;
+      color: #64748b; margin-bottom: 8px;
+    }
+    .site-list {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .site-chip {
+      font-size: 10px; padding: 3px 8px; border-radius: 20px;
+      background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+      color: #00e5ff; font-family: monospace;
+    }
+
+    /* Actions */
+    .actions {
+      padding: 10px 16px 14px;
+      display: flex; gap: 8px;
+    }
+    button {
+      flex: 1; padding: 8px; border-radius: 8px;
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      border: none; transition: all .15s;
+    }
+    .btn-primary {
+      background: rgba(0,229,255,0.12);
+      border: 1px solid rgba(0,229,255,0.25);
+      color: #00e5ff;
+    }
+    .btn-primary:hover { background: rgba(0,229,255,0.2); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #64748b;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); color: #94a3b8; }
+
+    /* Footer */
+    .footer {
+      padding: 8px 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 10px; color: #334155; text-align: center;
+    }
+    .footer a { color: #00e5ff; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <h1>Alvora Cyber</h1>
+      <p>AI Security Guard v1.1.0</p>
+    </div>
+    <div class="status-dot offline" id="statusDot"></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-card scanned">
+      <div class="value" id="statScanned">0</div>
+      <div class="label">Prompts Scanned</div>
+    </div>
+    <div class="stat-card blocked">
+      <div class="value" id="statBlocked">0</div>
+      <div class="label">Blocked</div>
+    </div>
+    <div class="stat-card pii">
+      <div class="value" id="statPii">0</div>
+      <div class="label">PII Incidents</div>
+    </div>
+    <div class="stat-card inject">
+      <div class="value" id="statInject">0</div>
+      <div class="label">Injections</div>
+    </div>
+    <div class="stat-card redacted">
+      <div class="value" id="statRedacted">0</div>
+      <div class="label">Sent Redacted</div>
+    </div>
+    <div class="stat-card links">
+      <div class="value" id="statLinks">0</div>
+      <div class="label">Bad Sites Stopped</div>
+    </div>
+  </div>
+
+  <!-- Backend status -->
+  <div class="backend-status">
+    <span class="label">Alvora Backend</span>
+    <span class="val error" id="backendVal">Offline</span>
+  </div>
+
+  <!-- Protected sites -->
+  <div class="sites">
+    <div class="sites-title">Protected Platforms</div>
+    <div class="site-list">
+      <span class="site-chip">ChatGPT</span>
+      <span class="site-chip">Claude</span>
+      <span class="site-chip">Gemini</span>
+      <span class="site-chip">Perplexity</span>
+      <span class="site-chip">Grok</span>
+      <span class="site-chip">Copilot</span>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn-primary" id="btnOpenApp">Open Dashboard</button>
+    <button class="btn-secondary" id="btnReset">Reset Stats</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <a href="https://alvoracyber.com" target="_blank">alvoracyber.com</a>
+    &nbsp;·&nbsp; Desktop app required for full protection
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "alvora-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Alvora Cyber — Security Backend",
+  "dependencies": {
+    "@huggingface/tokenizers": "0.2.0",
+    "better-sqlite3": "^12.10.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "onnxruntime-node": "1.30.0",
+    "systeminformation": "^5.22.7"
+  }
+}

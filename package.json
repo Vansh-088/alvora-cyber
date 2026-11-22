@@ -1,0 +1,59 @@
+{
+  "name": "alvora-cyber",
+  "productName": "Alvora Cyber",
+  "version": "1.2.2",
+  "description": "AI Security Layer for the Intelligence Age \u2014 Alvora Cyber Desktop",
+  "author": {
+    "name": "Vansh Dudhagra",
+    "email": "vanshdudhagara0546@gmail.com"
+  },
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently --names \"BACKEND,VITE\" --prefix-colors \"cyan,blue\" \"/Users/vanshdudhagra/.nvm/versions/node/v24.14.0/bin/node backend/server.js\" \"vite --port 5173\"",
+    "dev:web": "concurrently --names \"BACKEND,VITE\" --prefix-colors \"cyan,blue\" \"/Users/vanshdudhagra/.nvm/versions/node/v24.14.0/bin/node backend/server.js\" \"vite --port 5173\"",
+    "dev:electron": "concurrently --names \"BACKEND,VITE,ELECTRON\" --prefix-colors \"cyan,blue,green\" \"/Users/vanshdudhagra/.nvm/versions/node/v24.14.0/bin/node backend/server.js\" \"vite --port 5173\" \"wait-on http://localhost:5173 && NODE_ENV=development electron .\"",
+    "build": "vite build",
+    "benchmark": "node benchmark/eval.js",
+    "test": "node benchmark/eval.js",
+    "rebuild:electron": "electron-rebuild -v 29.4.6 -f -m backend",
+    "rebuild:dev": "cd backend && npm rebuild better-sqlite3",
+    "build:backend": "node scripts/build-backend.cjs",
+    "prepack:all": "npm run rebuild:electron && npm run build && npm run build:backend",
+    "dist": "npm run prepack:all && electron-builder",
+    "dist:mac": "npm run prepack:all && electron-builder --mac",
+    "dist:win": "npm run prepack:all && electron-builder --win",
+    "dist:linux": "npm run prepack:all && electron-builder --linux",
+    "preview": "vite preview",
+    "install:classifier": "node scripts/install-classifier.mjs",
+    "benchmark:public": "node benchmark/eval-public.mjs"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.8",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.2.1"
+  },
+  "devDependencies": {
+    "@electron/notarize": "^3.1.1",
+    "@electron/rebuild": "^4.0.4",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.18",
+    "concurrently": "^8.2.2",
+    "electron": "^29.4.5",
+    "electron-builder": "^24.13.3",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.2.0",
+    "wait-on": "^7.2.0"
+  }
+}

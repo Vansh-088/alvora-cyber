@@ -1,0 +1,14 @@
+// Static site served by Cloudflare (Workers static assets, free plan).
+// public/_headers is copied into dist/ and applied to every response.
+{
+  "name": "alvoracyber",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    { "pattern": "alvoracyber.com", "custom_domain": true },
+    { "pattern": "www.alvoracyber.com", "custom_domain": true }
+  ]
+}
