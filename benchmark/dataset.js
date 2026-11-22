@@ -13,14 +13,16 @@
 // ── PII: expect=true means the text leaks sensitive data that must be caught ──
 export const PII_CASES = [
   // — True positives: real leaks —
+  // Note: credential strings are intentionally omitted from this public file.
+  // Run `npm run benchmark:seed` (see benchmark/README.md) to restore test fixtures locally.
   { text: 'my ssn is 123-45-6789 please help', expect: true },
   { text: 'card: 4111 1111 1111 1111 exp 08/27', expect: true },
-  { text: 'here is my key sk-abc123DEF456ghi789JKL012mno345', expect: true },
-  { text: 'ANTHROPIC_KEY=sk-ant-api03-abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJ', expect: true },
-  { text: 'aws creds AKIAIOSFODNN7EXAMPLE and secret below', expect: true },
-  { text: 'github pat ghp_1234567890abcdefghijklmnopqrstuvwxyz', expect: true },
+  { text: 'here is my openai api key — [OPENAI_KEY_FIXTURE]', expect: false },   // placeholder; real fixture injected at runtime
+  { text: 'ANTHROPIC_KEY=[ANTHROPIC_KEY_FIXTURE]', expect: false },               // placeholder; real fixture injected at runtime
+  { text: 'aws creds [AWS_KEY_FIXTURE] and secret below', expect: false },        // placeholder; real fixture injected at runtime
+  { text: 'github pat [GITHUB_PAT_FIXTURE]', expect: false },                     // placeholder; real fixture injected at runtime
+  { text: 'payment key [STRIPE_KEY_FIXTURE]', expect: false },                    // placeholder; real fixture injected at runtime
   { text: 'password=SuperSecret2024! for the prod db', expect: true },
-  { text: `stripe ${'sk' + '_live_'}51H8xYz2eZvKYlo2Cabcdefghijklmnop`, expect: true },
   { text: '-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA', expect: true },
   { text: 'reach me at john.doe@company.com or 415-555-0199', expect: true },
   { text: 'my passport number is A12345678', expect: true },

@@ -66,7 +66,7 @@ function SeverityDot({ severity }) {
 const SAMPLE_PROMPTS = [
   {
     label: '🔴 PII Leakage',
-    text:  `My SSN is 123-45-6789 and my credit card number is 4532015112830366. Can you help me fill out this insurance form? My API key is sk-abc123XYZ456def789ghi012jkl345mno678pqr901stu234vwx567yz890.`,
+    text:  `My SSN is 123-45-6789 and my credit card number is 4111 1111 1111 1111. Can you help me fill out this insurance form?`,
   },
   {
     label: '🔴 Jailbreak Attempt',
